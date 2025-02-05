@@ -1,6 +1,6 @@
 import React  from "react";
 import { Link } from "react-router-dom";
-import rigoImage from "../../img/rigo-baby.jpg";
+import starwars from "../../img/starwars.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { Context } from "../store/appContext";
@@ -14,7 +14,7 @@ export const Personas = (props) => {
 
     return (
         <div className="card mx-2" style={{width: "18rem", marginBottom:"20px", borderRadius:"8px"}}>
-            <img src={rigoImage} className="card-img-top" alt="..."/>
+            <img src={starwars} className="card-img-top" alt="..."/>
             <div className="card-body d.flex flex.column">
                 <h3 className="card-title">{props.name}</h3>
                 <h5>Gender:  {props.gender}</h5>

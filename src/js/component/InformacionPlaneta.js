@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import rigoImage from "../../img/rigo-baby.jpg";
+import starwars from "../../img/starwars.png";
 
 
 export const InformacionPlaneta = () => {
@@ -26,7 +26,7 @@ export const InformacionPlaneta = () => {
         <div className="container mt-4" style={{ maxWidth:"1000px"}}>
             <div className="row">
                 <div className="col-md-6 d-flex justify-content-center">
-                    <img src={rigoImage} className="card-img-top" alt="..."/>
+                    <img src={starwars} className="card-img-top" alt="..."/>
                 </div>
                 <div className="col-md-6 d-flex flex-column  text-center">    
                     {loading ? (

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDisplay, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import starwars from "../../img/starwars.png";
 
 
@@ -18,8 +18,7 @@ export const Navbar = () => {
 		<nav className="navbar navbar-expand-lg navbar-light bg-light" >
 			<div className="container">
 			<Link to="/" className="navbar-brand">
-			
-				<span className="navbar-brand mb-0 h1">Star Wars</span>
+			<img src={starwars} alt="Star Wars Logo" style={{ height: "40px", marginRight: "10px" }} />
 			</Link>
 
 			<div className="ml-auto">
