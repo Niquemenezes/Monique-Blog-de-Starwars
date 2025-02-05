@@ -1,43 +1,51 @@
+import { Persona } from "../component/personajes";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			personas: [],
+			favoritos:[],
+			planetas:[],
+		
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			
+			toggleFavorite: (name) => {
 				const store = getStore();
+				console.log("nombre del favorito recibido: name")
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				if(store.favoritos.includes(name)){
+					console.log("ya lo tiene, se debe eliminar");
+					setStore({ favoritos: store.favoritos.filter(fav => fav !== name)});
+				}else{
+					console.log("no lo tiene, se debe agregar")
+					setStore({favoritos:[...store.favoritos, name]});
+				}
+				
+			},
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			loadSomeData: () => {
+				
+			fetch("https://swapi.dev/api/people")
+			.then( (response)=> response.json() )
+			.then( (data) => setStore({ personas: data.results}) )
+
+			fetch("https://swapi.dev/api/planets")
+			.then( (response)=> response.json() )
+			.then( (data) => setStore({ planetas: data.results}) )
+
+
+			},
+
+		
+
+			removefavotiro: (uid) => {
+				const store = getStore();
+				setStore({ favoritos: store.favoritos.filter(fav => fav.uid !== uid)});
+			},
+		
+						
 		}
 	};
 };
