@@ -23,18 +23,24 @@ export const InformacionPlaneta = () => {
     }, [informacion_id]);
 
     return (
-        <div className="container mt-4" style={{ maxWidth:"1000px"}}>
+        <div className="container mt-4" style={{ maxWidth:"1000px", background: "black"}}>
             <div className="row">
                 <div className="col-md-6 d-flex justify-content-center">
-                    <img src={starwars} className="card-img-top" alt="..."/>
+                    <img 
+                        src={`https://starwars-visualguide.com/assets/img/planets/${informacion_id}.jpg`} 
+                        className="card-img-top" 
+                        alt={info ? info.name : "imagen del planeta"} 
+                        style={{ borderRadius: "10px", maxWidth: "50%" }}
+                        onError={(e) => e.target.src = starwars} // Fallback en caso de error
+                    />
                 </div>
                 <div className="col-md-6 d-flex flex-column  text-center">    
                     {loading ? (
                         <p>Loading...</p>
-                    ): info ? (
+                    ): info && info.name? (
                         <>
-                            <h1 className="display-5 fw-bold mt-3">{info.name}</h1>
-                            <p className="text-muted">texto del planeta</p>
+                            <h1 className="display-5 fw-bold mt-3" style={{color:"white", margin:"5px"}}>{info.name}</h1>
+                            <p className="text-center m-10" style={{color:"white"}}>The planets in Star Wars are diverse and fascinating, with landscapes ranging from dry deserts to lush forests. Iconic locations like Tatooine, home to Luke Skywalker, and Endor, where the decisive battle against the Empire took place, offer unique settings. Each planet has its own ecosystem, culture, and history, adding depth to the vast universe of the saga..</p>
                         </>
                     ) : (
                         <p>Planeta no encontrado.</p>

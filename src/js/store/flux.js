@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			personas: [],
 			favoritos:[],
 			planetas:[],
+			vehiculos:[],
 		
 		},
 		actions: {
@@ -24,6 +25,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				
 			},
+			
+			removefavotiro: (uid) => {
+				const store = getStore();
+				setStore({ favoritos: store.favoritos.filter(fav => fav.uid !== uid)});
+			},
+		
 
 			loadSomeData: () => {
 				
@@ -35,17 +42,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			.then( (response)=> response.json() )
 			.then( (data) => setStore({ planetas: data.results}) )
 
-
-			},
-
+			fetch("https://swapi.dev/api/vehicles")
+			.then((response)=> response.json())
+			.then((data) => setStore({ vehiculos: data.results }))
 		
-
-			removefavotiro: (uid) => {
-				const store = getStore();
-				setStore({ favoritos: store.favoritos.filter(fav => fav.uid !== uid)});
 			},
-		
-						
+	
 		}
 	};
 };

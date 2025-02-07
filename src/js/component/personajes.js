@@ -1,6 +1,5 @@
 import React  from "react";
 import { Link } from "react-router-dom";
-import starwars from "../../img/starwars.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { Context } from "../store/appContext";
@@ -9,12 +8,13 @@ import { useContext } from "react";
 
 export const Personas = (props) => {
     const { store, actions } = useContext(Context);
-
     const isFavorite = store.favoritos.includes(props.name);
 
     return (
         <div className="card mx-2" style={{width: "18rem", marginBottom:"20px", borderRadius:"8px"}}>
-            <img src={starwars} className="card-img-top" alt="..."/>
+            <div className="imag">
+            <img src={`https://starwars-visualguide.com/assets/img/characters/${props.index + 1}.jpg`} className="card-img-top" alt={props.name}/>
+            </div>
             <div className="card-body d.flex flex.column">
                 <h3 className="card-title">{props.name}</h3>
                 <h5>Gender:  {props.gender}</h5>

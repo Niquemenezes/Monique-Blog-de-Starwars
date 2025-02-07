@@ -15,7 +15,7 @@ export const Navbar = () => {
 		}, [store.favoritos]);
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light" >
+		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			<div className="container">
 			<Link to="/" className="navbar-brand">
 			<img src={starwars} alt="Star Wars Logo" style={{ height: "40px", marginRight: "10px" }} />

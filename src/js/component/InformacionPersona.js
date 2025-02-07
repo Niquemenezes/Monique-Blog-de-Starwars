@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import starwars from "../../img/starwars.png";
 
 
 export const InformacionPersona = () => {
@@ -23,19 +22,24 @@ export const InformacionPersona = () => {
     }, [informacion_id]);
 
     return (
-        <div className="container mt-4" style={{ maxWidth:"1000px"}}>
+        <div className="container mt-4" style={{ maxWidth:"1000px", background: "black"}}>
             <div className="row">
                 <div className="col-md-6 d-flex justify-content-center">
-                    <img src={starwars} className="card-img-top" alt="..."/>
+                <img 
+                    src={`https://starwars-visualguide.com/assets/img/characters/${informacion_id}.jpg`} 
+                    className="card-img-top" 
+                    alt={info ? info.name : "imagen del personaje"} 
+                    style={{ borderRadius: "10px", maxWidth: "50%" }}
+                    onError={(e) => e.target.src = starwars} // Fallback en caso de error
+                />
                 </div>
-                <div className="col-md-6 d-flex flex-column  text-center">    
+                <div className="col-md-6 d-flex flex-column">    
                     {loading ? (
                         <p>Loading...</p>
-                    ): info ? (
+                    ): info && info.name ? (
                         <>
-                            <h1 className="display-5 fw-bold mt-3">{info.name}</h1>
-                            <p className="text-muted">text del personajes
-                            </p>
+                            <h1 className="display-5 fw-bold" style={{color:"white", margin:"5px"}}>{info.name}</h1>
+                            <p className="text-center m-10" style={{color:"white"}}>The characters in Star Wars are key to the conflict between good and evil. Heroes like Luke Skywalker and Leia Organa fight for justice, while villains like Darth Vader and Darth Maul seek power through the dark side of the Force. Throughout the saga, characters like Han Solo, Yoda, and Chewbacca face challenges that shape the fate of the galaxy, creating an epic story of sacrifice, loyalty, and redemption.</p>
                         </>
                     ) : (
                         <p>Personaje no encontrado.</p>
@@ -56,8 +60,7 @@ export const InformacionPersona = () => {
                     </div>
                  )}
         </div>
-    
-            
+             
     
     );
 };
